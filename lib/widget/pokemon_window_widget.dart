@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/main.dart';
+import 'package:pokedex/widget/pokemon_id.dart';
+import 'package:pokedex/widget/pokemon_image.dart';
+import 'package:pokedex/widget/pokemon_name.dart';
 
+import '../helpers/getTypeColor.dart';
 import '../model/pokemon.dart';
 
 Map<String, Color?> typeColors = {
@@ -29,59 +34,37 @@ class PokemonWindowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context){
-    return Container(
-      decoration: BoxDecoration(
-        color: typeColors[pokemon.types[0]],
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: const Offset(0, 1), // changes position of shadow
-          ),
-        ]
-      ),
-      padding: const EdgeInsets.all(10),
-      child: Stack(
-        children: [
-          Positioned(
-            bottom: 0,
-            left: 10,
-            child: Container(
-              width: 75.0,
-              height: 75.0,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.5),
-                shape: BoxShape.circle,
-              ),
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, '/pokemon/${pokemon.id}');
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: getTypeColor(pokemon.types[0]),
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: .5,
+              blurRadius: 15,
+              offset: const Offset(0, 1), // changes position of shadow
             ),
-          ),
-          Image.network(
-            (pokemon.sprite != null) ? pokemon.sprite as String : "https://www.toolworld.in/storage/media/product/noimage.png",
-            fit: BoxFit.contain,
-          ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.5),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Text(
-                pokemon.name,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16, 
-                  fontWeight: FontWeight.bold
-                )
-              )
+          ]
+        ),
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [ 
+            PokemonImage(url: pokemon.sprite),
+            Column(
+              children: [
+                const SizedBox(height: 10),
+                PokemonName(pokemonName: pokemon.name),
+                PokemonId(id: pokemon.id)
+              ]
             )
-          )
-        ],
-      )
+          ]
+        )
+      ),
     );
   }
 }

@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
         title: Text('Welcome to Pokedex'),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/background.png'), // Replace 'background.png' with your actual background image file path
             repeat: ImageRepeat.repeat,

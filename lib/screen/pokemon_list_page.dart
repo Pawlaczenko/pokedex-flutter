@@ -55,14 +55,16 @@ class _PokemonListPageState extends State<PokemonListPage> {
   }
 
   void loadPage(int incomingPage) {
-    if(isLoading){
+    if (isLoading) {
       return;
     }
     setState(() {
-      if(incomingPage > 0 && incomingPage <= pageCount){
+      if (incomingPage > 0 && incomingPage <= pageCount) {
         isLoading = true;
         page = incomingPage;
-        pokemons = fetchPokemonList().whenComplete(() => {isLoading = false});
+        pokemons = fetchPokemonList().whenComplete(() {
+          isLoading = false; // Update isLoading to false when the operation is completed
+        });
       }
     });
   }
@@ -121,9 +123,9 @@ class _PokemonListPageState extends State<PokemonListPage> {
                     return GridView.builder(
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        mainAxisSpacing: 10.0,
-                        crossAxisSpacing: 10.0,
-                        childAspectRatio: 1.5 / 1,
+                        mainAxisSpacing: 15.0,
+                        crossAxisSpacing: 15.0,
+                        childAspectRatio: 1 / 1.25,
                       ),
                       itemCount: snapshot.data?.length,
                       padding: const EdgeInsets.all(10),
@@ -146,15 +148,15 @@ class _PokemonListPageState extends State<PokemonListPage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(bottom: 15,top: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                 ElevatedButton(onPressed: () => {loadPage(1)}, child: const Text("First")),
+                  ElevatedButton(onPressed: () => {loadPage(1)}, child: const Text("First")),
                   ElevatedButton.icon(onPressed: () => {loadPage(page-1)}, icon: const Icon(Icons.arrow_left_outlined) , label: const Text("Prev")),
                   Text(style: TextStyle(color: Theme.of(context).colorScheme.primary,fontWeight: FontWeight.w700),"$page"),
                   Directionality(textDirection:TextDirection.rtl, child: ElevatedButton.icon(onPressed: () => {loadPage(page+1)}, icon: const Icon(Icons.arrow_left_outlined) , label: const Text("Next"))),
-                 ElevatedButton(onPressed: () => {loadPage(pageCount)}, child: const Text("Last")),
+                  ElevatedButton(onPressed: () => {loadPage(pageCount)}, child: const Text("Last")),
                 ],
               ),
             )
