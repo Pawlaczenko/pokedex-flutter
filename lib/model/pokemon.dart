@@ -3,7 +3,7 @@ import 'dart:core';
 class Pokemon {
   final String name;
   final int id;
-  final String sprite;
+  final String? sprite;
   final List<dynamic> types;
 
   Pokemon({required this.name, required this.id, required this.sprite, required this.types});
@@ -17,7 +17,7 @@ class Pokemon {
   return Pokemon(
     name: json['name'] as String,
     id: json['id'] as int,
-    sprite: json['sprites']['other']['official-artwork']['front_default'] as String,
+    sprite: json['sprites']?['other']?['official-artwork']?['front_default'] as String?,
     types: typeNames,
   );
 }

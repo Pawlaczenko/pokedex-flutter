@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 import '../model/pokemon.dart';
 
 Map<String, Color?> typeColors = {
-  'normal': Color.fromARGB(255, 187, 187, 187),
-  'fire': Color.fromARGB(255, 255, 119, 119),
-  'water': Color.fromARGB(255, 119, 166, 255),
-  'electric': Color.fromARGB(255, 255, 239, 119),
-  'grass': Color.fromARGB(255, 119, 204, 119),
-  'ice': Color.fromARGB(255, 187, 239, 239),
-  'fighting': Color.fromARGB(255, 255, 170, 119),
-  'poison': Color.fromARGB(255, 187, 119, 204),
-  'ground': Color.fromARGB(255, 187, 153, 85),
-  'flying': Color.fromARGB(255, 170, 153, 255),
-  'psychic': Color.fromARGB(255, 255, 119, 187),
-  'bug': Color.fromARGB(255, 170, 204, 85),
-  'rock': Color.fromARGB(255, 204, 170, 119),
-  'ghost': Color.fromARGB(255, 170, 119, 255),
-  'dragon': Color.fromARGB(255, 85, 51, 153),
-  'dark': Color.fromARGB(255, 85, 85, 85),
-  'steel': Color.fromARGB(255, 136, 153, 170),
-  'fairy': Color.fromARGB(255, 255, 204, 255),
+  'normal': const Color.fromARGB(255, 187, 187, 187),
+  'fire': const Color.fromARGB(255, 255, 119, 119),
+  'water': const Color.fromARGB(255, 119, 166, 255),
+  'electric': const Color.fromARGB(255, 255, 239, 119),
+  'grass': const Color.fromARGB(255, 119, 204, 119),
+  'ice': const Color.fromARGB(255, 187, 239, 239),
+  'fighting': const Color.fromARGB(255, 255, 170, 119),
+  'poison': const Color.fromARGB(255, 187, 119, 204),
+  'ground': const Color.fromARGB(255, 187, 153, 85),
+  'flying': const Color.fromARGB(255, 170, 153, 255),
+  'psychic': const Color.fromARGB(255, 255, 119, 187),
+  'bug': const Color.fromARGB(255, 170, 204, 85),
+  'rock': const Color.fromARGB(255, 204, 170, 119),
+  'ghost': const Color.fromARGB(255, 170, 119, 255),
+  'dragon': const Color.fromARGB(255, 85, 51, 153),
+  'dark': const Color.fromARGB(255, 85, 85, 85),
+  'steel': const Color.fromARGB(255, 136, 153, 170),
+  'fairy': const Color.fromARGB(255, 255, 204, 255),
 };
 
 class PokemonWindowWidget extends StatelessWidget {
@@ -49,8 +49,8 @@ class PokemonWindowWidget extends StatelessWidget {
             bottom: 0,
             left: 10,
             child: Container(
-              width: 100.0,
-              height: 100.0,
+              width: 75.0,
+              height: 75.0,
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.5),
                 shape: BoxShape.circle,
@@ -58,10 +58,8 @@ class PokemonWindowWidget extends StatelessWidget {
             ),
           ),
           Image.network(
-            pokemon.sprite,
+            (pokemon.sprite != null) ? pokemon.sprite as String : "https://www.toolworld.in/storage/media/product/noimage.png",
             fit: BoxFit.contain,
-            height: double.infinity,
-            width: double.infinity
           ),
           Positioned(
             bottom: 0,

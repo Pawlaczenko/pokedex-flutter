@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/screen/my_home_page.dart';
+import 'package:pokedex/screen/home_page.dart';
+import 'package:pokedex/screen/pokemon_list_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,11 +13,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Pokedex',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: Color.fromARGB(255, 255, 119, 119),
+        )
       ),
-      home: const MyHomePage(title: 'Pokedex HomePage'),
+      home: HomePage(),
+      routes: {
+        '/pokemonList': (context) => PokemonListPage(title: 'All Pokemon')
+      }
     );
   }
 }
