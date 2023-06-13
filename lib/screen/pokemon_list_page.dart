@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/model/pokemon.dart';
 import 'package:http/http.dart' as http;
 
-import '../widget/pokemon_window_widget.dart';
+import '../widget/pokemon_grid.dart';
+import '../widget/pokemon_list.dart';
+import '../widget/pokemon_grid_item.dart';
 
 class PokemonListPage extends StatefulWidget {
   const PokemonListPage({super.key, required this.title});
@@ -21,6 +23,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
   bool isLoading = false;
   String query = "";
   late int pageCount;
+  bool isGrid = true;
   final myController = TextEditingController();
   
   Future<Pokemon> fetchPokemon(String url) async {
@@ -69,6 +72,12 @@ class _PokemonListPageState extends State<PokemonListPage> {
     });
   }
 
+  void toggleView() {
+    setState(() {
+      isGrid = !isGrid;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -87,6 +96,12 @@ class _PokemonListPageState extends State<PokemonListPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          TextButton(
+            onPressed: (){toggleView();}, 
+            child: Icon(isGrid ? Icons.list : Icons.grid_view),
+          )
+        ],
       ),
       body: Center(
         child: Column(
@@ -107,7 +122,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
                   const SizedBox(width: 10),
                   ElevatedButton(
                     onPressed: () {
-                      //TODO
+                      Navigator.pushNamed(context, '/pokemon/${myController.text.trim().toLowerCase()}');
                     },
                     child: const Text('GO'),
                   ),
@@ -120,23 +135,11 @@ class _PokemonListPageState extends State<PokemonListPage> {
                 future: fetchPokemonList(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData && !isLoading) {
-                    return GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 15.0,
-                        crossAxisSpacing: 15.0,
-                        childAspectRatio: 1 / 1.25,
-                      ),
-                      itemCount: snapshot.data?.length,
-                      padding: const EdgeInsets.all(10),
-                      itemBuilder: (context, index) {
-                        return GridTile(
-                          child: PokemonWindowWidget(
-                            pokemon: snapshot.data![index],
-                          ),
-                        );
-                      },
-                    );
+                    if(isGrid) {
+                      return PokemonGrid(items: snapshot.data!);
+                    } else {
+                      return PokemonList(items: snapshot.data!);
+                    }
                   }
                   if (snapshot.hasError) {
                     return Text("Error: ${snapshot.error}");

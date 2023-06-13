@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/model/pokemon.dart';
 import 'package:http/http.dart' as http;
 
-import '../widget/pokemon_window_widget.dart';
+import '../widget/pokemon_grid_item.dart';
 
 class HomePage extends StatelessWidget {
   @override

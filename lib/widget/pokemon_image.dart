@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/main.dart';
 
-class PokemonImage extends StatelessWidget {
+class PokemonImage extends StatefulWidget {
   final String? url;
-  final String defaultUrl = "https://www.toolworld.in/storage/media/product/noimage.png";
 
   const PokemonImage({Key? key, required this.url}) : super(key: key);
+
+  @override
+  State<PokemonImage> createState() => PokemonImageState();
+}
+
+class PokemonImageState extends State<PokemonImage> {
+  double turns = 0.0;
+  final String defaultUrl = "https://www.toolworld.in/storage/media/product/noimage.png";
+
+  void _changeRotation() {
+    setState(() => turns += 1.0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +32,18 @@ class PokemonImage extends StatelessWidget {
               ),
             ),
           ),
-          Image.network(
-            (url != null) ? url as String : defaultUrl,
-            fit: BoxFit.contain,
+          AnimatedRotation(
+            turns: turns,
+            duration: const Duration(seconds: 1),
+            child: InkWell(
+              onTap: () {
+                _changeRotation();
+              },
+              child: Image.network(
+                (widget.url != null) ? widget.url as String : defaultUrl,
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
         ],
       ),

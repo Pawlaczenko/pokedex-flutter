@@ -70,7 +70,7 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
                     ),
                     padding: const EdgeInsets.all(25),
                     margin: const EdgeInsets.only(left: 25, right: 25, top: 25),
-                    child: PokemonImage(url: snapshot.data!.sprite),
+                    child: Row(children: [PokemonImage(url: snapshot.data!.sprite),],),
                   ),
                   const SizedBox(height: 10),
                   PokemonTypesGrid(types: snapshot.data!.types),

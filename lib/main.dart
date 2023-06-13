@@ -39,10 +39,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Pokedex',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: Color.fromARGB(255, 255, 119, 119),
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          titleTextStyle: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          toolbarHeight: 50,
+          iconTheme: IconThemeData(color: Colors.black),
         )
       ),
       home: HomePage(),
