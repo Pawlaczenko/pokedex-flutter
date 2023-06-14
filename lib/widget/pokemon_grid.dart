@@ -15,7 +15,7 @@ class PokemonGrid extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 15.0,
         crossAxisSpacing: 15.0,
-        childAspectRatio: 1 / 1.25,
+        childAspectRatio: 1 / 1.1,
       ),
       itemCount: items.length,
       padding: const EdgeInsets.all(10),

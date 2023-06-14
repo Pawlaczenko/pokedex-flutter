@@ -15,7 +15,7 @@ class PokemonName extends StatelessWidget {
       maxLines: 1,
       textAlign: TextAlign.center,
       style: TextStyle(
-        color: Color.fromARGB(255, 39, 39, 39),
+        color: const Color.fromARGB(255, 39, 39, 39),
         fontSize: fontSize?.toDouble() ?? 16.0,
         fontWeight: FontWeight.bold,
       )

@@ -1,12 +1,9 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:pokedex/main.dart';
 
 import '../helpers/getTypeColor.dart';
-import '../model/pokemon.dart';
 import '../model/pokemonDetails.dart';
 import '../widget/moves_list.dart';
 import '../widget/pokemon_id.dart';
@@ -41,7 +38,7 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
     }
   }
 
-    @override
+  @override
   void initState() {
     super.initState();
     pokemon = fetchPokemon();
@@ -94,7 +91,7 @@ class _PokemonDetailPageState extends State<PokemonDetailPage> {
                   const SizedBox(height: 10),
                 ],
               ),
-            ); // Return the Text widget
+            );
           }
           if (snapshot.hasError) {
             return Text("Error: ${snapshot.error}");

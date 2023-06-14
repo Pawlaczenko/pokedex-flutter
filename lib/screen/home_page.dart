@@ -1,23 +1,20 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:pokedex/model/pokemon.dart';
-import 'package:http/http.dart' as http;
-
-import '../widget/pokemon_grid_item.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome to Pokedex'),
+        title: const Text('Welcome to Pokedex'),
       ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/background.png'), // Replace 'background.png' with your actual background image file path
+            image: AssetImage('assets/background.png'),
             repeat: ImageRepeat.repeat,
+            opacity: .25,
           ),
         ),
         child: Center(
@@ -30,22 +27,26 @@ class HomePage extends StatelessWidget {
                   color: Colors.white,
                   border: Border.all(
                     color: Theme.of(context).colorScheme.primary,
-                    width: 5,
+                    width: 15,
                   ),
                 ),
-                padding:EdgeInsets.symmetric(horizontal: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Image.asset(
-                  'assets/logo.png', // Replace 'logo.png' with your actual logo image file path
+                  'assets/logo.png',
                   width: 250,
                   height: 150,
                 ),
               ),
-              SizedBox(height: 20),
-              ElevatedButton(
+              const SizedBox(height: 20),
+              ElevatedButton.icon(
                 onPressed: () {
                   Navigator.pushNamed(context, '/pokemonList');
                 },
-                child: Text('Open the Pokedex'),
+                icon: const Icon(Icons.catching_pokemon_outlined),
+                label: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text('Open the Pokedex'),
+                ),
               ),
             ],
           ),

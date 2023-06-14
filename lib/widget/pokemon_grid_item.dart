@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/main.dart';
 import 'package:pokedex/widget/pokemon_id.dart';
 import 'package:pokedex/widget/pokemon_image.dart';
 import 'package:pokedex/widget/pokemon_name.dart';
@@ -27,7 +26,7 @@ class PokemonGridItem extends StatelessWidget {
               color: Colors.grey.withOpacity(0.2),
               spreadRadius: .5,
               blurRadius: 15,
-              offset: const Offset(0, 1), // changes position of shadow
+              offset: const Offset(0, 1),
             ),
           ]
         ),

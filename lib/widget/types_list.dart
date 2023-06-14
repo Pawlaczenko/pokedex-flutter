@@ -10,7 +10,7 @@ class PokemonTypesGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 8.0, // Adjust the spacing between the types
+      spacing: 8.0,
       children: types.map((type) {
         return Chip(
           label: Text(type),

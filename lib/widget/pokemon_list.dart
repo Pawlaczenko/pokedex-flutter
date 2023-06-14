@@ -16,7 +16,7 @@ class PokemonList extends StatelessWidget {
       itemBuilder: (context, index) {
         return Container(
           height: 100,
-          margin: EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10),
           child: PokemonGridItem(
             pokemon: items[index],
             isColumn: false,

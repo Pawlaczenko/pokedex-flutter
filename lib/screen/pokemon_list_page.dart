@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 
 import '../widget/pokemon_grid.dart';
 import '../widget/pokemon_list.dart';
-import '../widget/pokemon_grid_item.dart';
 
 class PokemonListPage extends StatefulWidget {
   const PokemonListPage({super.key, required this.title});
@@ -86,7 +85,6 @@ class _PokemonListPageState extends State<PokemonListPage> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
     myController.dispose();
     super.dispose();
   }
@@ -153,13 +151,13 @@ class _PokemonListPageState extends State<PokemonListPage> {
             Padding(
               padding: const EdgeInsets.only(bottom: 15,top: 15),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(onPressed: () => {loadPage(1)}, child: const Text("First")),
-                  ElevatedButton.icon(onPressed: () => {loadPage(page-1)}, icon: const Icon(Icons.arrow_left_outlined) , label: const Text("Prev")),
+                  ElevatedButton(onPressed: () => {loadPage(1)}, child: const Icon(Icons.first_page)),
+                  ElevatedButton(onPressed: () => {loadPage(page-1)}, child: const Icon(Icons.keyboard_arrow_left)),
                   Text(style: TextStyle(color: Theme.of(context).colorScheme.primary,fontWeight: FontWeight.w700),"$page"),
-                  Directionality(textDirection:TextDirection.rtl, child: ElevatedButton.icon(onPressed: () => {loadPage(page+1)}, icon: const Icon(Icons.arrow_left_outlined) , label: const Text("Next"))),
-                  ElevatedButton(onPressed: () => {loadPage(pageCount)}, child: const Text("Last")),
+                  ElevatedButton(onPressed: () => {loadPage(page+1)}, child: const Icon(Icons.keyboard_arrow_right)),
+                  ElevatedButton(onPressed: () => {loadPage(pageCount)}, child: const Icon(Icons.last_page)),
                 ],
               ),
             )

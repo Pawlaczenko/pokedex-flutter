@@ -16,14 +16,10 @@ extension StringExtension on String {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // Route generator function
   Route<dynamic>? generateRoute(RouteSettings settings) {
-    // Extract the route name
     final routeName = settings.name;
 
-    // Handle different routes
     if (routeName!.startsWith('/pokemon/')) {
-      // Extract the pokemonId from the route
       final pokemonId = routeName.substring('/pokemon/'.length);
 
       return MaterialPageRoute(
@@ -31,7 +27,6 @@ class MyApp extends StatelessWidget {
       );
     }
 
-    // If no match is found, return null
     return null;
   }
 
@@ -43,7 +38,7 @@ class MyApp extends StatelessWidget {
       title: 'Pokedex',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: Color.fromARGB(255, 255, 119, 119),
+          primary: const Color.fromARGB(255, 255, 119, 119),
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.transparent,
@@ -53,7 +48,7 @@ class MyApp extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black),
         )
       ),
-      home: HomePage(),
+      home: const HomePage(),
       routes: {
         '/pokemonList': (context) => const PokemonListPage(title: 'All Pokemon'),
       },

@@ -41,7 +41,7 @@ class PokemonImageState extends State<PokemonImage> {
               },
               child: Image.network(
                 (widget.url != null) ? widget.url as String : defaultUrl,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
               ),
             ),
           ),

@@ -16,12 +16,12 @@ class PokemonMovesList extends StatelessWidget {
           padding: const EdgeInsets.all(25.0),
           child: Text(
             heading,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
         ListView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: displayMoves.length,
           itemBuilder: (context, index) {
             final move = displayMoves[index];

@@ -17,7 +17,7 @@ class Pokemon {
   return Pokemon(
     name: json['name'] as String,
     id: json['id'] as int,
-    sprite: json['sprites']?['other']?['official-artwork']?['front_default'] as String?,
+    sprite: json['sprites']?['front_default'] as String?,
     types: typeNames,
   );
 }
